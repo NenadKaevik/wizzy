@@ -1,3 +1,5 @@
+<img src="https://image.flaticon.com/icons/png/512/178/178396.png" height="50">
+
 # Wizzy 0.5.1
 A simple and modern wizard plugin
 
