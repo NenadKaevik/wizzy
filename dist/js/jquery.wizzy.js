@@ -22,7 +22,7 @@
 
             function loader(action){
                 let loader ='<div class="loading"></div>';
-                if(action === true){ //Show Loader
+                if(action === true){ //Show Loader Spinner
                     content.fadeOut(500,function(){
                         elem.addClass('progress');
                         setTimeout(() => {
