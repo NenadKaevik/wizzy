@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+    background: url('https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-450073.png') center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: "Roboto";
+}
