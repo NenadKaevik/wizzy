@@ -30,12 +30,8 @@ License: MIT
   }
 }
 .wz-wrapper {
-  position: absolute;
-  left: 50%;
-  top: 50%;
   display: flex;
   flex-direction: column;
-  transform: translate(-50%, -50%);
   min-height: 400px;
   width: 600px;
   background: #ffffff;
@@ -74,8 +70,8 @@ License: MIT
   width: 100%;
   display: flex;
   flex-direction: row;
-  overflow: hidden;
   border-radius: 3px;
+  overflow: hidden;
 }
 .wz-wrapper .wz-inner .wz-header nav a {
   flex: 1;

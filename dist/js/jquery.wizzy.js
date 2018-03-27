@@ -17,13 +17,26 @@
 
             let step_links = elem.find('nav a').toArray();
             let step_count = step_links.length;
+            let step_status = new Array(step_count);
             let step_content = elem.find('.wz-step').toArray();
             let step = 0;
 
-            function loader(action){
+            function init(){
+                for(i = 1 ; i < step_count ; i++){
+                    step_status[i] = 0;
+                }
+                step_status[0] = 1;
+                render();
+            }
+
+            /**
+             * 
+             * @param {boolean} show 
+             */
+            function loader(show){
                 let loader ='<div class="loading"></div>';
-                if(action === true){ //Show Loader Spinner
-                    content.fadeOut(500,function(){
+                if(show === true){ //Show Loader Spinner
+                    content.fadeOut(400,function(){
                         elem.addClass('progress');
                         setTimeout(() => {
                             elem.append(loader);
@@ -34,16 +47,23 @@
                     elem.find('.loading').remove();
                     elem.removeClass('progress');
                     setTimeout(() => {
-                        content.fadeIn(500);
-                    }, 500);
+                        content.fadeIn(400);
+                    }, 400);
                 }
             }
 
+            /**
+             * 
+             * @param {string} action 
+             */
             function react(action){
 
                 if(step >= 0 && step < step_count){
                     if(action === 'next'){
-                        step++;
+                        step_status[step++] = 2;
+                        if(step_status[step] === 0){
+                            step_status[step] = 1;
+                        }
                         render(step);
                     }
                     else if(action == 'back'){
@@ -60,6 +80,9 @@
                 
             }
 
+            /**
+             * Render out the content
+             */
             function render(){
                 navigator.html('');
 
@@ -84,17 +107,27 @@
                 $(step_content[step]).addClass('active');
             }
 
+            /**
+             * Click events
+             */
             $(elem).on('click','.wz-navigator .btn',function(){
                 let action = $(this).data('action');
                 react(action);
             });
 
             $(elem).on('click','nav a',function() {
-                step = $(this).index();
-                render();
+                let step_check = $(this).index();
+                if(step_status[step_check] === 1 || step_status[step_check] === 2){
+                    step = $(this).index();
+                    render();
+                }
+                else{
+                    console.log('Check errors');
+                }
             });
 
-            render();
+            
+            init();
         });
     }
 
