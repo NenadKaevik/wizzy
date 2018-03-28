@@ -67,8 +67,8 @@ License: MIT
 .wz-wrapper{
     display: flex;
     flex-direction: column;
-    min-height:400px;
     width:600px;
+    min-height:400px;
     background: #ffffff;
     box-shadow: 0px 50px 50px -30px rgba(0,0,0,0.4);
     transition-duration: 0.4s;
@@ -109,6 +109,8 @@ License: MIT
                 flex-direction: row;
                 .br-3;
                 overflow: hidden;
+                background: @color-light;
+                position: relative;
     
                 a{
                     flex: 1;
@@ -117,21 +119,34 @@ License: MIT
                     text-decoration: none;
                     text-transform: uppercase;
                     color: @color-gray;
-                    background: @color-light;
                     font-size: 12px;
                     position: relative;
                     height: 40px;
                     transition-duration: 0.4s;
     
                     &.active{
-                        background: @color-primary;
                         color: @color-white;
                     }
 
                     &.completed{
-                        background: darken(@color-primary,10%);
-                        color: @color-white;
+                        color: fade(@color-white,40%);
                     }
+
+                    span{
+                        position: relative;
+                        z-index: 2;
+                    }
+                }
+
+                .progress{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width:0px;
+                    background: @color-primary;
+                    transition-duration: 0.4s;
+                    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
                 }
             }
         }
@@ -142,6 +157,7 @@ License: MIT
             .wz-step{
                 display: none;
                 animation-duration: 0.4s;
+                color: @color-black;
     
                 &.active{
                     display: block;

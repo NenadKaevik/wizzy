@@ -4,10 +4,12 @@
         
         let settings = $.extend({
             stepNumbers: false,
+            progressType: 'fill',
         }, options);
 
         return this.each(function(){
             let elem = $(this);
+            let nav = elem.find('.wz-header nav');
             let navigator = elem.find('.wz-navigator');
             let content = elem.find('.wz-inner');
 
@@ -19,6 +21,7 @@
             let step_count = step_links.length;
             let step_status = new Array(step_count);
             let step_content = elem.find('.wz-step').toArray();
+            let link_width = $(step_links[0]).width();
             let step = 0;
 
             function init(){
@@ -26,7 +29,29 @@
                     step_status[i] = 0;
                 }
                 step_status[0] = 1;
+                updateTemplate();
                 render();
+            }
+
+            function moveProgress(step){
+                if(settings.progressType == 'fill'){
+                    let progressWidth = link_width * (step + 1);
+                    nav.find('.progress').css({'width':progressWidth + 'px'});
+                }
+                if(settings.progressType == 'slide'){
+                    nav.find('.progress').css({'width':link_width + 'px'});
+                    let distance = link_width * (step);
+                    nav.find('.progress').css({'left':distance + 'px'});
+                }
+                
+            }
+
+            function updateTemplate(){
+                nav.append('<div class="progress"></div>');
+                moveProgress(step);
+                step_links.forEach(element => {
+                    $(element).wrapInner('<span></span>');
+                });
             }
 
             /**
@@ -60,7 +85,7 @@
 
                 if(step >= 0 && step < step_count){
                     if(action === 'next'){
-                        step_status[step++] = 2;
+                        step_status[step++] = 1;
                         if(step_status[step] === 0){
                             step_status[step] = 1;
                         }
@@ -95,7 +120,6 @@
                 else{
                     navigator.append(btnBack + btnNext);
                 }
-                
 
                 elem.find('nav a').removeClass('active completed');
                 for(i = 0 ; i < step ; i++){
@@ -105,6 +129,8 @@
 
                 elem.find('.wz-body .wz-step').removeClass('active');
                 $(step_content[step]).addClass('active');
+
+                moveProgress(step);
             }
 
             /**

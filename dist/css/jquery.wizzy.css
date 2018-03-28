@@ -32,8 +32,8 @@ License: MIT
 .wz-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 400px;
   width: 600px;
+  min-height: 400px;
   background: #ffffff;
   box-shadow: 0px 50px 50px -30px rgba(0, 0, 0, 0.4);
   transition-duration: 0.4s;
@@ -72,6 +72,8 @@ License: MIT
   flex-direction: row;
   border-radius: 3px;
   overflow: hidden;
+  background: #ecf0f1;
+  position: relative;
 }
 .wz-wrapper .wz-inner .wz-header nav a {
   flex: 1;
@@ -80,19 +82,30 @@ License: MIT
   text-decoration: none;
   text-transform: uppercase;
   color: #999999;
-  background: #ecf0f1;
   font-size: 12px;
   position: relative;
   height: 40px;
   transition-duration: 0.4s;
 }
 .wz-wrapper .wz-inner .wz-header nav a.active {
-  background: #3498db;
   color: #ffffff;
 }
 .wz-wrapper .wz-inner .wz-header nav a.completed {
-  background: #217dbb;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.4);
+}
+.wz-wrapper .wz-inner .wz-header nav a span {
+  position: relative;
+  z-index: 2;
+}
+.wz-wrapper .wz-inner .wz-header nav .progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0px;
+  background: #3498db;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 .wz-wrapper .wz-inner .wz-body {
   flex: 1;
@@ -101,6 +114,7 @@ License: MIT
 .wz-wrapper .wz-inner .wz-body .wz-step {
   display: none;
   animation-duration: 0.4s;
+  color: #212121;
 }
 .wz-wrapper .wz-inner .wz-body .wz-step.active {
   display: block;
