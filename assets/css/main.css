@@ -5,6 +5,7 @@ body{
     background-size: cover;
     background-attachment: fixed;
     font-family: "Roboto";
+    height: 100vh;
 }
 
 .centered{
@@ -15,7 +16,6 @@ body{
 }
 
 .wrapper{
-    width: 600px;
     margin: 0 auto;
     padding: 20px 0px;
 }

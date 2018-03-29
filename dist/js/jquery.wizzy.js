@@ -136,12 +136,14 @@
             /**
              * Click events
              */
-            $(elem).on('click','.wz-navigator .btn',function(){
+            $(elem).on('click','.wz-navigator .btn',function(e){
+                e.preventDefault();
                 let action = $(this).data('action');
                 react(action);
             });
 
-            $(elem).on('click','nav a',function() {
+            $(elem).on('click','nav a',function(e) {
+                e.preventDefault();
                 let step_check = $(this).index();
                 if(step_status[step_check] === 1 || step_status[step_check] === 2){
                     step = $(this).index();
